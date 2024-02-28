@@ -2,6 +2,9 @@
 
 machine learning with Keras to find concrete strength
 
+This is the final project of "Introduction to Deep Learning & Neural Networks with Keras" from Coursera.
+In the project, I tested the effects of the different hyperparameters as well as more hidden layers.
+
 ## First Project
 
     after evaluating with 50 iterations and training with 50 epochs
