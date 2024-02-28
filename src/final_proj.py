@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
 # importing the dataset
-df = pd.read_csv("concrete_data.csv")
+df = pd.read_csv("src/concrete_data.csv")
 print(df.head)
 
 # creating X and Y datasets
@@ -25,6 +25,9 @@ model.add(Dense(1))
 model.compile(optimizer="adam", loss="mean_squared_error")
 
 
+mse_list = []
+
+
 def train_model_and_report_error() -> float:
     # training the model with training data
     model.fit(X_train, Y_train, epochs=50)
@@ -34,6 +37,7 @@ def train_model_and_report_error() -> float:
 
     # evaluating the model
     mse = mean_squared_error(Y_test, predictions)
+    mse_list.append(mse)
     print(f'Mean Squared Error: {mse}')
     return mse
 
@@ -51,3 +55,7 @@ print(
 # After 50 iterations and 50 epochs
 # Mean of the error data is: 105.02458448195225
 # Standart Deviation of the error data is: 144.71733293357877
+
+graph_data_1 = pd.DataFrame(mse_list)
+
+graph_data_1.to_csv("proj1_graph", index=False)

@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
 
 # importing the dataset
-df = pd.read_csv("concrete_data.csv")
+df = pd.read_csv("src/concrete_data.csv")
 print(df.head)
 
 # creating X and Y datasets
@@ -30,6 +30,8 @@ model.add(Dense(10, activation="relu", input_dim=no_cols))
 model.add(Dense(1))
 model.compile(optimizer="adam", loss="mean_squared_error")
 
+mse_list = []
+
 
 def train_model_and_report_error() -> float:
     # training the model with training data
@@ -40,6 +42,7 @@ def train_model_and_report_error() -> float:
 
     # evaluating the model
     mse = mean_squared_error(Y_test, predictions)
+    mse_list.append(mse)
     print(f'Mean Squared Error: {mse}')
     return mse
 
@@ -57,3 +60,7 @@ print(
 # After 50 iterations with normalized data and 100 epochs
 # Mean of the error data is: 41.72675271724622
 # Standart Deviation of the error data is: 17.313033521974475
+
+graph_data_3 = pd.DataFrame(mse_list)
+
+graph_data_3.to_csv("proj3_graph", index=False)
